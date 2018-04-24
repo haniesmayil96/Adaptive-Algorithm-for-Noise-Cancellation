@@ -1,0 +1,29 @@
+24 tap fiter is adopted, to achieve area/power efficient design
+
+64 is not used because larger filter length doesn't always give best noise reduction
+it requires higher computational complexity
+Tap length is inversly proportional to maximum sampling frequency
+
+A parallel architecture wih more hardware MAC units can obtain higher throughput,we use 3 stage pipeline MAC architecture
+
+Buffer-stores previous values along with current sample
+stores M coefficient location datas
+
+1 update circular buffer- low level activty,power consuption 
+
+output of FIR filter appears in every M+4 cycle,delayed to ensure latency on signal matches with latency through MAC engine.
+DELAY= no. of pipeline stage+1
+=4
+finishes all calculations at 2M 
+
+2 counters,for coefficient buffer and input buffer
+A comparator(M-2)to disable count per cycle and writes new data into data buffer every M cycle
+
+Proposed 24tap filter divided into 2 parts:
+1.Genarating Anti-noise(read-only)
+2.Adjust coefficients of adaptive filter(read and write)
+
+
+Hardware contains
+2 RAM
+1 MAC fiter

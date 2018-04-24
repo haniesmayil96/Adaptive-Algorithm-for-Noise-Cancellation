@@ -1,0 +1,42 @@
+1. Filters the input vector x(n) through the adaptive filter
+coefficients vector (n 1) to produce the filter output
+victory y(n) .
+2. Filter y(n) through the secondary path filter s to produce the
+secondary actuator response at the sensor ys(n) .
+3. Evaluates the current error sampling e(n) d (n) ys(n) .note
+the error, here, it is formed by adding the signal rather than
+subtracting them to be compatible with real world sensors
+such as microphones and accelerometers.
+4. Filters the mirrored error vector e(n) through the estimate of
+the secondary path se to produce the filter-error signal fe(n) .
+5. Uses x(n) and fe(n) to calculate the normalized gradient
+vector and uses this to update the adaptive filter
+coefficients (n) .
+6. Supports both real and complex signals.
+
+=====================================================================\
+
+The output of the adaptive filter is calculated.
+y(n) x(n)w(n) (3.38)
+2. An error signal is calculated as the addition of desired signal
+and the secondary filter output.
+. ( ) ( ) n e y s n d n (3.39)
+3. The filter tap weights are updated in preparation for the next
+iteration is given below
+w(n 1) w(n) . fe(n).x(n) (3.40)
+
+=====================================================================\
+Why IIR filter is not preferred?
+
+•	Use of Feedback
+•	Are sometimes called Recursive filters.
+•	Can oscillate if not properly designed.
+
+=====================================================================\
+?	Factor that influenced the selection of processor is the Word-Length.
+?	FIR filters are preferred over IIR filters due to its Linear Phase Characteristics.
+?	Digital filters act in cascaded mode by convolving their coefficients.
+
+An algorithm is proposed to diminish the number of delays and adders.
+
+
